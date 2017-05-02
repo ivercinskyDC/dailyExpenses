@@ -1,3 +1,44 @@
 <h1>
   {{title}}
 </h1>
+
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Lugar</th>
+      <th>Monto</th>
+    </tr>
+  </thead>
+  <tr *ngFor="let expense of expenses" >
+    <td>
+      {{expense.location}}
+    </td>
+    <td>
+      {{expense.amount}}
+    </td>
+  </tr>
+</table>
+
+
+<hr>
+<form class="container" #expenseForm="ngForm" (submit)="handleExpenseSubmit()">
+  <fieldset class="form-group">
+    <div class="form-group row">
+      <label class="col-sm-2 col-form-label" for="location">Lugar:</label>
+      <input class="form-control" required name="location" id="location" [(ngModel)]="new_expense.location" type="text">
+    </div>
+    <div class="form-group row">
+      <label class="col-sm-2 col-form-label" for="amount">Cuanto?</label>
+      <input class="form-control" required name="amount" id="amount" [(ngModel)]="new_expense.amount" type="number">
+    </div>
+    <div class="form-group row">
+      <label class="col-sm-2 col-form-label" for="date">Fecha</label>
+      <input class="form-control" required name="date" id="date" [(ngModel)]="new_expense.date" type="number">
+    </div>
+    <div class="form-group row">
+      <button class="btn btn-primary" type="submit" [disabled]="!expenseForm.form.valid">Guardar</button>
+    </div>
+  </fieldset>
+</form>
+
